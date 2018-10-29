@@ -1,0 +1,44 @@
+<%@ page import="java.io.*,java.util.*,java.sql.*"%>
+<%@ page import="javax.servlet.http.*,javax.servlet.*" %>
+<%@ page import="java.sun.jdbc.*,java.util.*,java.sql.*"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>saving in Database</title>
+</head>
+<body>
+ 
+ 
+<%
+String name=request.getParameter("name");
+String age=request.getParameter("age");
+String address=request.getParameter("address");
+String email=request.getParameter("email");
+String Bloodgroup=request.getParameter("Bloodgroup");
+String gender=request.getParameter("gender");
+    Connection conn = null;
+    try
+    {
+        Class.forName("oracle.jdbc.driver.OracleDriver");
+        conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "scott", "tiger");
+       
+Statement st = con.createStatement();
+
+ int i=st.executeUpdate("insert into Blooddonors(name,age,address,email,bloodgroup,gender)values('"+name+"','"+age+"','"+address+"','"+email+"','"+bloodgroup+"','"+gender+"')");
+
+    }
+
+    catch(Exception e)
+    {
+        out.println("Exception : " + e.getMessage() + "");
+    }
+
+
+%>
+ 
+ 
+</body>
+</html>

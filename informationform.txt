@@ -1,0 +1,15 @@
+<html>
+<head>
+<title>donor information</title>
+</head>
+<body>
+<form action="retrieveaction.jsp" method="post">
+<label>do u want to see donors information
+<input type="text" name="choice">
+</label>
+<br>
+<br>
+<input type="submit" name="submit">
+</form>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
+
+
+<h2 align="center"><font><strong>Retrieve data from database in jsp</strong></font></h2>
+<table align="center" cellpadding="5" cellspacing="5" border="1">
+<tr>
+
+</tr>
+<tr bgcolor="#A52A2A">
+<td><b>name</b></td>
+<td><b>age</b></td>
+<td><b>address</b></td>
+<td><b>email</b></td>
+<td><b>bloodgroup</b></td>
+</tr>
+<%
+try{ 
+String name=request.getParameter("name");
+String choice=request.getParameter("choice");
+if(choice=="yes")
+{
+ Class.forName("oracle.jdbc.driver.OracleDriver");
+        conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "scott", "tiger");
+String sql ="SELECT * FROM Blooddonors";
+
+resultSet = statement.executeQuery(sql);
+while(resultSet.next()){
+%>
+<tr bgcolor="#DEB887">
+
+<td><%=resultSet.getString("name") %></td>
+<td><%=resultSet.getString("age") %></td>
+<td><%=resultSet.getString("address") %></td>
+<td><%=resultSet.getString("Bloodgroup") %></td>
+<td><%=resultSet.getString("email") %></td>
+
+</tr>
+
+<% 
+}
+
+} catch (Exception e) {
+e.printStackTrace();
+}
+%>
+</table>
